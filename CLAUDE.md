@@ -1,4 +1,4 @@
-@AGENTS.md
+﻿@AGENTS.md
 
 # Website voor VisualDJ
 
@@ -7,7 +7,7 @@ Website voor VisualDJ, de automatische VJ-app van de gebruiker. De app zelf staa
 ## Stand van zaken
 
 - **Live:** https://visualdj.pages.dev (Cloudflare Pages-project `visualdj`). Elke push naar `main` op GitHub (`blyoco/visualdjwebsite`) gaat vanzelf live. Build-commando `npm run build`, uitvoermap `out`.
-- **Domein:** www.visualdj.com is als custom domain toegevoegd in Cloudflare. Bij de domeinpartij moet een CNAME `www` → `visualdj.pages.dev` staan (dat doet de gebruiker zelf). Het kale visualdj.com volgt pas als het domeinslot eraf is (support loopt).
+- **Domein:** www.visualdj.music is als custom domain toegevoegd in Cloudflare. Bij de domeinpartij moet een CNAME `www` → `visualdj.pages.dev` staan (dat doet de gebruiker zelf). Het kale visualdj.music volgt pas als het domeinslot eraf is (support loopt).
 
 **Op de site:** menubalk met de wordmark (`public/img/wordmark.webp`, origineel in `assets/`), hero met demo-video, drie feature-kaarten, How it works met schermafbeelding van de app, About (foto, bio en socials uit websitebalai), Beta-blok, FAQ en footer. De onderdelen staan in `src/components/site/`; gedeelde links in `src/lib/site.ts`.
 
