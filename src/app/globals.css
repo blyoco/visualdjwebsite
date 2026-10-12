@@ -2,18 +2,29 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* Kleuren en lettertypes kiezen we samen; dit is alleen een neutrale basis. */
+/* Zwart-wit: de kleur komt van de visuals zelf. */
 :root {
-  --background: #0a0a0a;
-  --foreground: #fafafa;
+  --background: #000;
+  --foreground: #f5f5f5;
+  --muted: #8a8a8a;
+  --line: rgb(255 255 255 / 0.1);
 }
 
 @theme inline {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
