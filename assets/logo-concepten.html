@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VisualDJ logo-concepten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;800&family=Space+Grotesk:wght@500;700&family=Unbounded:wght@600;800&family=Syne:wght@700;800&family=Michroma&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#000; --card:#0b0b0b; --line:rgba(255,255,255,.1); --fg:#f5f5f5; --muted:#8a8a8a; }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--fg); font-family:Geist, system-ui, sans-serif; padding:48px 16px 80px; }
+  header { max-width:1100px; margin:0 auto 40px; }
+  header h1 { font-size:28px; font-weight:800; letter-spacing:-.02em; }
+  header p { color:var(--muted); margin-top:8px; max-width:640px; line-height:1.5; }
+  .grid { max-width:1100px; margin:0 auto; display:grid; gap:20px; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:24px; overflow:hidden; }
+  .stage { height:240px; display:flex; align-items:center; justify-content:center; gap:18px; padding:24px; }
+  .stage svg.mark { width:84px; height:84px; flex:none; }
+  .word { font-size:34px; line-height:1; white-space:nowrap; }
+  .row { display:flex; border-top:1px solid var(--line); }
+  .row > div { flex:1; height:84px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .light { background:#f2f2f2; color:#000; }
+  .row svg { width:40px; height:40px; }
+  .row .fav svg { width:20px; height:20px; }
+  .app { width:56px; height:56px; border-radius:14px; background:#111; display:grid; place-items:center; border:1px solid var(--line); }
+  .app svg { width:36px !important; height:36px !important; }
+  .info { padding:20px 22px 24px; border-top:1px solid var(--line); }
+  .info b { font-size:15px; }
+  .info span { color:var(--muted); font-family:Michroma, monospace; font-size:11px; letter-spacing:.15em; }
+  .info p { color:var(--muted); margin-top:8px; line-height:1.5; font-size:14px; }
+  .light .ink { color:#000; }
+</style>
+</head>
+<body>
+<header>
+  <h1>VisualDJ – 5 logo-concepten</h1>
+  <p>Elk teken komt uit de app zelf. Bovenaan het logo op zwart, daaronder op wit, als app-icoon en als klein favicon (16–20 px), om te zien of het ook klein nog werkt.</p>
+</header>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="vis" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset=".5" stop-color="#a855f7"/><stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="fire" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="currentColor" stop-opacity=".35"/><stop offset="1" stop-color="currentColor"/>
+    </linearGradient>
+
+    <!-- 1 Beat-V: een V van meterstreepjes, de laagste tel valt op de 1 -->
+    <symbol id="m1" viewBox="0 0 120 120">
+      <g fill="currentColor">
+        <rect x="16" y="11" width="9" height="26" rx="4.5"/>
+        <rect x="29" y="34" width="9" height="26" rx="4.5"/>
+        <rect x="42" y="58" width="9" height="26" rx="4.5"/>
+        <rect x="69" y="58" width="9" height="26" rx="4.5"/>
+        <rect x="82" y="34" width="9" height="26" rx="4.5"/>
+        <rect x="95" y="11" width="9" height="26" rx="4.5"/>
+      </g>
+      <rect x="55.5" y="83" width="9" height="26" rx="4.5" fill="url(#vis)"/>
+    </symbol>
+
+    <!-- 2 Tunnel: kaders die de diepte in gaan, met een V-opening -->
+    <symbol id="m2" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-linejoin="round">
+        <rect x="8" y="8" width="104" height="104" rx="22" stroke-width="7" opacity=".35"/>
+        <rect x="22" y="24" width="76" height="76" rx="16" stroke-width="6" opacity=".55"/>
+        <rect x="35" y="39" width="50" height="50" rx="11" stroke-width="5" opacity=".8"/>
+      </g>
+      <path d="M48 54 L60 76 L72 54" fill="none" stroke="url(#vis)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- 3 Scherm: het app-icoon strakker, de staafjes vormen een V -->
+    <symbol id="m3" viewBox="0 0 120 120">
+      <rect x="10" y="16" width="100" height="70" rx="10" fill="none" stroke="currentColor" stroke-width="7"/>
+      <path d="M48 98 h24" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <path d="M60 86 v12" stroke="currentColor" stroke-width="7"/>
+      <g fill="currentColor">
+        <rect x="22" y="30" width="8" height="44" rx="2"/>
+        <rect x="34" y="42" width="8" height="32" rx="2"/>
+        <rect x="46" y="54" width="8" height="20" rx="2"/>
+        <rect x="66" y="54" width="8" height="20" rx="2"/>
+        <rect x="78" y="42" width="8" height="32" rx="2"/>
+        <rect x="90" y="30" width="8" height="44" rx="2"/>
+      </g>
+      <rect x="56.5" y="64" width="7" height="10" rx="2" fill="url(#vis)"/>
+    </symbol>
+
+    <!-- 4 Follow: de vuurlijn die vanuit het midden naar buiten krult, met de bal -->
+    <symbol id="m4" viewBox="0 0 120 120">
+      <path d="M60 60 a5 5 0 0 1 10 0 a11 11 0 0 1 -22 0 a17 17 0 0 1 34 0 a23 23 0 0 1 -46 0 a29 29 0 0 1 58 0 a35 35 0 0 1 -38 34"
+            fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="60" cy="60" r="6" fill="url(#vis)"/>
+    </symbol>
+
+    <!-- 5 Zwerm: een V uit lichtpuntjes, zoals de zwerm in de app tekst schrijft -->
+    <symbol id="m5" viewBox="0 0 120 120">
+      <g fill="currentColor">
+        <circle cx="18" cy="18" r="6.5"/><circle cx="25" cy="31" r="5.5"/><circle cx="31" cy="44" r="6"/>
+        <circle cx="38" cy="57" r="5"/><circle cx="44" cy="70" r="5.5"/><circle cx="51" cy="83" r="5"/>
+        <circle cx="102" cy="18" r="6.5"/><circle cx="95" cy="31" r="5.5"/><circle cx="89" cy="44" r="6"/>
+        <circle cx="82" cy="57" r="5"/><circle cx="76" cy="70" r="5.5"/><circle cx="69" cy="83" r="5"/>
+        <circle cx="8" cy="40" r="2" opacity=".45"/><circle cx="14" cy="62" r="1.6" opacity=".3"/>
+        <circle cx="112" cy="40" r="2" opacity=".45"/><circle cx="106" cy="62" r="1.6" opacity=".3"/>
+        <circle cx="34" cy="96" r="1.8" opacity=".35"/><circle cx="86" cy="96" r="1.8" opacity=".35"/>
+        <circle cx="60" cy="10" r="2.2" opacity=".4"/><circle cx="46" cy="22" r="1.6" opacity=".3"/><circle cx="74" cy="22" r="1.6" opacity=".3"/>
+      </g>
+      <circle cx="60" cy="98" r="7.5" fill="url(#vis)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="grid">
+
+  <section class="card">
+    <div class="stage"><svg class="mark"><use href="#m1"/></svg><div class="word" style="font-family:Geist;font-weight:800;letter-spacing:-.04em">VisualDJ</div></div>
+    <div class="row">
+      <div class="light"><svg class="ink"><use href="#m1"/></svg><b class="ink" style="font-family:Geist;font-weight:800;letter-spacing:-.04em;font-size:20px">VisualDJ</b></div>
+      <div><span class="app"><svg><use href="#m1"/></svg></span></div>
+      <div class="fav"><svg><use href="#m1"/></svg></div>
+    </div>
+    <div class="info"><span>01 · BEAT-V</span><br><b>De V uit meterstreepjes</b>
+      <p>Zes streepjes van de VU-meter dalen in de maat naar de laagste: de tel, de 1. Dat is het hart van de app: het beeld valt op de kick. De gekleurde tel is de enige kleur, net als op de site.</p></div>
+  </section>
+
+  <section class="card">
+    <div class="stage"><svg class="mark"><use href="#m2"/></svg><div class="word" style="font-family:Unbounded;font-weight:800;font-size:28px;letter-spacing:-.02em">visualdj</div></div>
+    <div class="row">
+      <div class="light"><svg class="ink"><use href="#m2"/></svg><b class="ink" style="font-family:Unbounded;font-weight:800;font-size:16px">visualdj</b></div>
+      <div><span class="app"><svg><use href="#m2"/></svg></span></div>
+      <div class="fav"><svg><use href="#m2"/></svg></div>
+    </div>
+    <div class="info"><span>02 · TUNNEL</span><br><b>Kaders die de diepte in gaan</b>
+      <p>De tunnel uit Standard en Story: drie kaders die naar binnen helderder worden, met in het hart een V. Leest ook als een scherm in een scherm. Werkt sterk als app-icoon.</p></div>
+  </section>
+
+  <section class="card">
+    <div class="stage"><svg class="mark"><use href="#m3"/></svg><div class="word" style="font-family:'Space Grotesk';font-weight:700;letter-spacing:-.03em">Visual<span style="opacity:.45">DJ</span></div></div>
+    <div class="row">
+      <div class="light"><svg class="ink"><use href="#m3"/></svg><b class="ink" style="font-family:'Space Grotesk';font-weight:700;font-size:20px">Visual<span style="opacity:.45">DJ</span></b></div>
+      <div><span class="app"><svg><use href="#m3"/></svg></span></div>
+      <div class="fav"><svg><use href="#m3"/></svg></div>
+    </div>
+    <div class="info"><span>03 · SCHERM</span><br><b>Je huidige icoon, strakker</b>
+      <p>Het scherm met de staafjes dat de app nu al heeft, maar de staafjes vormen een V met de tel in het midden. Bekend voor wie de app kent, en meteen duidelijk: beeld + muziek.</p></div>
+  </section>
+
+  <section class="card">
+    <div class="stage"><svg class="mark"><use href="#m4"/></svg><div class="word" style="font-family:Syne;font-weight:800;letter-spacing:-.02em">VisualDJ</div></div>
+    <div class="row">
+      <div class="light"><svg class="ink"><use href="#m4"/></svg><b class="ink" style="font-family:Syne;font-weight:800;font-size:20px">VisualDJ</b></div>
+      <div><span class="app"><svg><use href="#m4"/></svg></span></div>
+      <div class="fav"><svg><use href="#m4"/></svg></div>
+    </div>
+    <div class="info"><span>04 · FOLLOW</span><br><b>De vuurlijn met de bal</b>
+      <p>De lijn uit Follow die vanuit het midden naar buiten krult, met de bal waar de camera aan hangt. Beweging en reis in één teken; lijkt ook op een draaiende plaat.</p></div>
+  </section>
+
+  <section class="card">
+    <div class="stage"><svg class="mark"><use href="#m5"/></svg><div class="word" style="font-family:Michroma;font-size:22px;letter-spacing:.12em">VISUAL DJ</div></div>
+    <div class="row">
+      <div class="light"><svg class="ink"><use href="#m5"/></svg><b class="ink" style="font-family:Michroma;font-size:11px;letter-spacing:.1em;white-space:nowrap">VISUAL DJ</b></div>
+      <div><span class="app"><svg><use href="#m5"/></svg></span></div>
+      <div class="fav"><svg><use href="#m5"/></svg></div>
+    </div>
+    <div class="info"><span>05 · ZWERM</span><br><b>Een V uit lichtpuntjes</b>
+      <p>De zwerm die in de app zelf de tekst schrijft: puntjes die samen een V vormen, met een paar losse die nog aan komen vliegen. De gekleurde punt onderaan is de tel.</p></div>
+  </section>
+
+</div>
+</body>
+</html>
