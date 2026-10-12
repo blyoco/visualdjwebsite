@@ -28,12 +28,9 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a href="#top" className="flex items-center gap-2.5 text-lg font-semibold tracking-tight">
+        <a href="#top" aria-label="VisualDJ home" className="flex items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/logo.png" alt="" width={28} height={28} className="size-7 rounded-md" />
-          <span>
-            Visual<span className="text-muted">DJ</span>
-          </span>
+          <img src="/img/wordmark.webp" alt="VisualDJ" width={800} height={155} className="h-6 w-auto sm:h-7" />
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
