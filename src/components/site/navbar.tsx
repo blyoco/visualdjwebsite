@@ -28,8 +28,12 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a href="#top" className="text-lg font-semibold tracking-tight">
-          Visual<span className="text-muted">DJ</span>
+        <a href="#top" className="flex items-center gap-2.5 text-lg font-semibold tracking-tight">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/img/logo.png" alt="" width={28} height={28} className="size-7 rounded-md" />
+          <span>
+            Visual<span className="text-muted">DJ</span>
+          </span>
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
