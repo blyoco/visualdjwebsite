@@ -1,0 +1,70 @@
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Reveal } from "./reveal";
+
+const faq = [
+  {
+    q: "What is VisualDJ?",
+    a: "An automatic VJ for Windows. It listens to the music, finds the beat and plays visuals all night, mixing in the photos, videos and texts of the DJ who is on and of the event itself. Three kinds of picture: Standard (animations that switch on the beat), Story (one long journey with a living camera) and Follow (that journey with a line of fire and a calm camera).",
+  },
+  {
+    q: "What do I need?",
+    a: "A Windows 10 or 11 PC or laptop, an audio input (a DJ mixer over USB works best) and a second screen or projector over HDMI. No installer and no account: VisualDJ is a single file you start directly.",
+  },
+  {
+    q: "Does it mess with my mixer or my livestream?",
+    a: "No. VisualDJ shares the audio input with other programs, so a stream or recording keeps reading it at the same time. It never changes the volume, the format or the default device. Anything it needs, like mono or one channel pair, it does with its own copy of the sound.",
+  },
+  {
+    q: "How does it find the tempo?",
+    a: "From the kicks: within about a second and a half the BPM is there, to a tenth of a beat, and it follows a DJ who rides the pitch. A Pioneer DJM-900NXS2 or DJM-A9 can also send its own BPM over the same USB cable. Above 155 BPM the visuals switch to half time by themselves.",
+  },
+  {
+    q: "What kind of media can I add?",
+    a: "Photos (jpg, png, gif, webp, bmp), videos (mp4, webm, mov with H.264) and texts. Pictures are never stretched. Texts come in on the one, with forty ways to move, from scrollers and typewriters to text written by the swarm itself.",
+  },
+  {
+    q: "What if a DJ runs late or stops early?",
+    a: "Hit Extend and the current DJ keeps going, or Next to hand over now. The rest of the night stays on its times. Both buttons are also on the remote on your phone.",
+  },
+  {
+    q: "Can I control it from my phone?",
+    a: "Yes. Open the address from the settings on a phone in the same network and log in with your code. You see who's on and who's next, and you can play, extend, skip, switch the picture or send a text to the screen.",
+  },
+  {
+    q: "Will it run on my laptop?",
+    a: "Yes. Choose Performance for always-smooth visuals, even on a 4K projector, or Quality on a heavy PC. You can cap how much of the CPU VisualDJ may use, so a recording on the same laptop never runs short.",
+  },
+  {
+    q: "How do I get it?",
+    a: "VisualDJ is in beta. Sign-up opens soon, right here on this page.",
+  },
+];
+
+export function Faq() {
+  return (
+    <section id="faq" className="scroll-mt-16 border-t border-line py-24 sm:py-32">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+        <Reveal>
+          <p className="font-mono text-xs tracking-[0.3em] text-muted uppercase">FAQ</p>
+          <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">Questions, answered.</h2>
+          <p className="mt-5 text-lg text-muted">
+            Something missing?{" "}
+            <a href="mailto:rodneybalai@gmail.com" className="text-foreground underline underline-offset-4 hover:no-underline">
+              Send me an email.
+            </a>
+          </p>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <Accordion type="single" collapsible className="border-t border-line">
+            {faq.map((item, i) => (
+              <AccordionItem key={item.q} value={`item-${i}`} className="border-b border-line">
+                <AccordionTrigger className="py-5 text-base font-medium hover:no-underline md:text-lg">{item.q}</AccordionTrigger>
+                <AccordionContent className="pb-6 text-base text-pretty text-muted">{item.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

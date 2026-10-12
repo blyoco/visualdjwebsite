@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "motion/react";
 import { VideoClip } from "./video-clip";
@@ -39,7 +39,7 @@ export function Hero() {
         </motion.p>
         <motion.div {...fade(0.3)} className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
-            href="#get"
+            href="#beta"
             className="w-full rounded-full bg-foreground px-7 py-3.5 font-medium text-black transition-transform hover:scale-105 sm:w-auto"
           >
             Get VisualDJ
@@ -67,3 +67,4 @@ export function Hero() {
     </section>
   );
 }
+

@@ -1,15 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const links = [
-  { href: "#features", label: "Features" },
-  { href: "#how", label: "How it works" },
-  { href: "#faq", label: "FAQ" },
-];
+import { getHref, nav as links } from "@/lib/site";
 
 export function Navbar() {
   const { scrollY } = useScroll();
@@ -40,7 +35,7 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href="#get"
+            href={getHref}
             className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-black transition-transform hover:scale-105"
           >
             Get VisualDJ
@@ -59,7 +54,7 @@ export function Navbar() {
 
       {open && (
         <div className="flex flex-col gap-1 px-4 pb-4 md:hidden">
-          {[...links, { href: "#get", label: "Get VisualDJ" }].map((l) => (
+          {[...links, { href: getHref, label: "Get VisualDJ" }].map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-base hover:bg-white/5">
               {l.label}
             </a>
@@ -69,3 +64,4 @@ export function Navbar() {
     </motion.header>
   );
 }
+
