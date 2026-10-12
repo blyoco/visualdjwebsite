@@ -1,70 +1,122 @@
-﻿"use client";
+"use client";
 
-import { motion } from "motion/react";
-import { VideoClip } from "./video-clip";
+import dynamic from "next/dynamic";
+import { useRef, useSyncExternalStore } from "react";
+import { motion, useInView, useScroll, useTransform } from "motion/react";
+import { ChevronDown } from "lucide-react";
+import { clip, getHref } from "@/lib/site";
+import { SoundToggle } from "./sound";
+import { LazyVideo } from "./lazy-video";
 
-const DEMO = "/video/demo.mp4";
+// De 3D-tunnel laadt pas in de browser (three.js is zwaar); tot dan, en op telefoons,
+// staat er gewoon de video.
+const TunnelScene = dynamic(() => import("./tunnel-scene"), { ssr: false });
 
-const fade = (delay: number) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] as const },
-});
+const subscribe = (cb: () => void) => {
+  const mq = window.matchMedia("(min-width: 768px)");
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+};
+const canFly = () => window.matchMedia("(min-width: 768px)").matches;
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
-  return (
-    <section id="top" className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28">
-      {/* De video vergroot en wazig achter alles: zo geven de visuals de pagina zijn kleur. */}
-      <video
-        src={DEMO}
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden
-        className="pointer-events-none absolute inset-0 size-full scale-125 object-cover opacity-35 blur-3xl"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-black" />
+  const section = useRef<HTMLElement>(null);
+  const fly = useSyncExternalStore(subscribe, canFly, () => false);
+  const inView = useInView(section, { margin: "200px" });
+  const { scrollYProgress } = useScroll({ target: section, offset: ["start start", "end end"] });
 
-      <div className="relative mx-auto max-w-6xl px-4 text-center sm:px-6">
-        <motion.p {...fade(0)} className="font-mono text-xs tracking-[0.3em] text-muted uppercase">
-          Automatic VJ software
-        </motion.p>
-        <motion.h1 {...fade(0.1)} className="mt-5 text-5xl leading-[0.95] font-semibold tracking-tight sm:text-7xl lg:text-8xl">
-          Visuals that hear the music.
-        </motion.h1>
-        <motion.p {...fade(0.2)} className="mx-auto mt-6 max-w-2xl text-lg text-muted">
-          VisualDJ listens to your mixer, locks onto the kick and plays a full night of visuals, with your DJs&apos;
-          photos, videos and texts mixed in. You set up the night. It runs the show.
-        </motion.p>
-        <motion.div {...fade(0.3)} className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a
-            href="#beta"
-            className="w-full rounded-full bg-foreground px-7 py-3.5 font-medium text-black transition-transform hover:scale-105 sm:w-auto"
-          >
-            Get VisualDJ
-          </a>
-          <a
-            href="#features"
-            className="w-full rounded-full border border-white/20 px-7 py-3.5 font-medium transition-colors hover:bg-white/10 sm:w-auto"
-          >
-            See what it does
-          </a>
-        </motion.div>
+  const textOpacity = useTransform(scrollYProgress, [0, 0.18], [1, 0]);
+  const textScale = useTransform(scrollYProgress, [0, 0.18], [1, 1.15]);
+  const textBlur = useTransform(scrollYProgress, [0, 0.18], ["blur(0px)", "blur(12px)"]);
+  const endOpacity = useTransform(scrollYProgress, [0.82, 0.95], [0, 1]);
+
+  return (
+    <section id="top" ref={section} className={fly ? "relative h-[420vh]" : "relative"}>
+      <div className={fly ? "sticky top-0 h-dvh overflow-hidden" : "relative overflow-hidden"}>
+        {fly ? (
+          <div className="absolute inset-0">{inView && <TunnelScene progress={scrollYProgress} />}</div>
+        ) : (
+          <LazyVideo
+            src={clip("story").src}
+            poster={clip("story").poster}
+            aria-hidden
+            className="absolute inset-0 size-full object-cover opacity-60"
+          />
+        )}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,black_95%)]" />
 
         <motion.div
-          initial={{ opacity: 0, y: 40, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-14 sm:mt-20"
+          style={fly ? { opacity: textOpacity, scale: textScale, filter: textBlur } : undefined}
+          className={
+            fly
+              ? "absolute inset-0 flex flex-col items-center justify-center px-4 text-center"
+              : "relative flex min-h-dvh flex-col items-center justify-center px-4 pt-20 pb-16 text-center"
+          }
         >
-          <VideoClip
-            src={DEMO}
-            className="aspect-[860/368] rounded-2xl border border-white/15 shadow-[0_0_160px_-30px_rgba(255,255,255,0.3)] sm:rounded-3xl"
-          />
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease }}
+            className="font-mono text-xs tracking-[0.4em] text-white/70 uppercase"
+          >
+            Automatic VJ software
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.1, ease }}
+            className="mt-6 text-6xl leading-[0.9] font-semibold tracking-tighter text-balance sm:text-8xl lg:text-[9rem]"
+            style={{ textShadow: "0 0 calc(20px + var(--beat) * 60px) rgba(255,255,255,calc(0.15 + var(--beat) * 0.35))" }}
+          >
+            See the music.
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.25, ease }}
+            className="mx-auto mt-7 max-w-xl text-lg text-white/75"
+          >
+            VisualDJ listens to your mixer, locks onto the kick and plays a full night of visuals. You set up the night.
+            It runs the show.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease }}
+            className="pointer-events-auto mt-10 flex flex-col items-center gap-3 sm:flex-row"
+          >
+            <a
+              href={getHref}
+              className="rounded-full bg-foreground px-8 py-4 font-medium text-black transition-transform hover:scale-105"
+            >
+              Get VisualDJ
+            </a>
+            <SoundToggle label className="px-6 py-4 text-base" />
+          </motion.div>
+          {fly && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 1 }}
+              className="absolute bottom-8 flex flex-col items-center gap-2 font-mono text-[10px] tracking-[0.4em] text-white/60 uppercase"
+            >
+              Scroll to fly in
+              <ChevronDown className="size-4 animate-bounce" />
+            </motion.div>
+          )}
         </motion.div>
+
+        {fly && (
+          <motion.div
+            style={{ opacity: endOpacity }}
+            className="pointer-events-none absolute inset-x-0 bottom-12 text-center"
+          >
+            <p className="font-mono text-xs tracking-[0.4em] text-white/80 uppercase">Rendered live by VisualDJ</p>
+          </motion.div>
+        )}
       </div>
     </section>
   );
 }
-

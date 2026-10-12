@@ -40,3 +40,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+
+# bronbestanden audio (alleen de webversie in public/ gaat online)
+/looptechno*.wav
+/looptechno*.mp3
+/assets/audio/
+
+# schermafbeeldingen van scripts/shots.mjs
+/shots/

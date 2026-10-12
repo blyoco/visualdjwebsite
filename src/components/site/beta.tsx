@@ -1,5 +1,7 @@
 import { Check } from "lucide-react";
+import { clip } from "@/lib/site";
 import { Reveal } from "./reveal";
+import { LazyVideo } from "./lazy-video";
 
 const points = [
   "Windows 10 and 11",
@@ -15,12 +17,8 @@ export function Beta() {
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-line bg-white/[0.02] px-6 py-14 text-center sm:px-12 sm:py-20">
             {/* De visuals als zachte gloed achter het blok */}
-            <video
-              src="/video/demo.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
+            <LazyVideo
+              src={clip("world").small}
               aria-hidden
               className="pointer-events-none absolute inset-0 size-full scale-125 object-cover opacity-25 blur-3xl"
             />

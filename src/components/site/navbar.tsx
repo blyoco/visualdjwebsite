@@ -5,6 +5,7 @@ import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getHref, nav as links } from "@/lib/site";
+import { SoundToggle } from "./sound";
 
 export function Navbar() {
   const { scrollY } = useScroll();
@@ -34,6 +35,7 @@ export function Navbar() {
               {l.label}
             </a>
           ))}
+          <SoundToggle />
           <a
             href={getHref}
             className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-black transition-transform hover:scale-105"
@@ -42,14 +44,17 @@ export function Navbar() {
           </a>
         </div>
 
-        <button
-          type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
-          className="grid size-10 place-items-center md:hidden"
-          onClick={() => setOpen((o) => !o)}
-        >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <SoundToggle />
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="grid size-10 place-items-center"
+            onClick={() => setOpen((o) => !o)}
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
       </nav>
 
       {open && (
