@@ -15,25 +15,32 @@ const vertex = /* glsl */ `
   attribute float aKind;   // 0 en 1: de twee ruggengraten, 2: een sport
   attribute float aW;      // waar op de sport (0..1)
   attribute vec3 aRnd;
-  uniform float uAngle, uX, uR, uH, uTurns, uBeat, uSize, uTime, uPx;
+  uniform float uAngle, uX, uR, uH, uTurns, uBeat, uSize, uTime, uPx, uBend, uWave, uPhase;
   uniform vec3 uColA, uColB;
   varying vec3 vColor;
   varying float vAlpha;
   void main() {
+    // De as slingert als een slang: twee golven over elkaar, die met de scroll (uPhase) door de helix kruipen.
+    float a1 = aY * uWave + uPhase;
+    float a2 = aY * uWave * 2.1 - uPhase * 1.3;
+    float ax = uBend * (sin(a1) + 0.35 * sin(a2));
+    float dxdy = uBend * uWave * (cos(a1) + 0.35 * 2.1 * cos(a2)) / uH;
+    vec2 tang = normalize(vec2(dxdy, 1.0));
+    vec2 nrm = vec2(tang.y, -tang.x);                   // dwars op de as, in het vlak van het scherm
     float y = aY * uH;
     float th = aY * uTurns * 6.2831853 + uAngle;
     float gr = 2.3;                                    // de groef tussen de twee strengen
     float r = uR * (1.0 + 0.06 * sin(aY * 9.0 + uTime));
-    vec3 pA = vec3(r * cos(th), y, r * sin(th));
-    vec3 pB = vec3(r * cos(th + gr), y, r * sin(th + gr));
+    // De strengen draaien om de gebogen as: dwars (nrm) en de diepte in (z)
+    vec3 pA = vec3(nrm * (r * cos(th)), r * sin(th));
+    vec3 pB = vec3(nrm * (r * cos(th + gr)), r * sin(th + gr));
     vec3 p;
     vec3 col;
     if (aKind < 0.5) { p = pA; col = uColA; }
     else if (aKind < 1.5) { p = pB; col = uColB; }
     else { p = mix(pA, pB, aW); col = aW < 0.5 ? uColA : uColB; }
     p += (aRnd - 0.5) * vec3(5.0, 5.0, 5.0);
-    p.x += uX;
-    p.x += 6.0 * sin(aY * 3.0 + uTime * 0.4);          // de as dwaalt zacht
+    p.xy += vec2(ax + uX, y);
     float near = 0.5 + 0.5 * (p.z / max(uR, 1.0));      // 0 achter, 1 voor
     vColor = col * (0.55 + 0.75 * near + uBeat * 0.6);
     vAlpha = (aKind > 1.5 ? 0.55 : 0.9) * (0.35 + 0.65 * near);
@@ -140,6 +147,9 @@ function Helix({ side, seed }: { side: 1 | -1; seed: number }) {
           uSize: { value: 7 },
           uTime: { value: 0 },
           uPx: { value: 1 },
+          uBend: { value: 0 },
+          uWave: { value: 5 },
+          uPhase: { value: 0 },
           uOpacity: { value: 0 },
           uColA: { value: new THREE.Color() },
           uColB: { value: new THREE.Color() },
@@ -157,7 +167,7 @@ function Helix({ side, seed }: { side: 1 | -1; seed: number }) {
     const w = size.width;
     const h = size.height;
     const R = small ? 26 : Math.min(70, w * 0.045);
-    const margin = R + (small ? 18 : 48);
+    const margin = R + (small ? 18 : 48) + (small ? Math.min(55, w * 0.13) : Math.min(190, w * 0.11)) * 0.7;
     const half = w / 2 - margin;
     // Eén keer van de zijkant naar de overkant en terug per twee schermhoogtes scrollen: in het midden kruisen ze.
     const phase = (scroll.y / (h * 2)) * Math.PI;
@@ -170,6 +180,10 @@ function Helix({ side, seed }: { side: 1 | -1; seed: number }) {
     u.uBeat.value = getBeat();
     u.uSize.value = small ? 5 : 7;
     u.uPx.value = viewport.dpr;
+    // De slangenbocht: flink uitslaan, de golf kruipt mee met de scroll (tegengesteld per helix) en ademt in de tijd.
+    u.uBend.value = small ? Math.min(55, w * 0.13) : Math.min(190, w * 0.11);
+    u.uWave.value = small ? 4.2 : 5.2;
+    u.uPhase.value = side * (scroll.y * 0.0045 + clock.elapsedTime * 0.35);
     // In het midden iets zachter, zodat de tekst leesbaar blijft.
     const centre = 1 - Math.abs(Math.cos(phase));
     u.uOpacity.value = scroll.visible * (small ? 0.55 : 0.8) * (1 - centre * 0.45);
