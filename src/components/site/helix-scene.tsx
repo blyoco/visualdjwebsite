@@ -203,7 +203,8 @@ function Helix({ side, seed }: { side: 1 | -1; seed: number }) {
 
 export default function HelixScene() {
   return (
-    <Canvas orthographic dpr={[1, 1.5]} camera={{ position: [0, 0, 500], zoom: 1, near: 1, far: 2000 }} gl={{ alpha: true, antialias: false }}>
+    // pointerEvents none op de Canvas zelf: R3F zet hem anders op "auto" en dan vangt deze laag alle klikken af.
+    <Canvas style={{ pointerEvents: "none" }} orthographic dpr={[1, 1.5]} camera={{ position: [0, 0, 500], zoom: 1, near: 1, far: 2000 }} gl={{ alpha: true, antialias: false }}>
       <Driver />
       <Helix side={1} seed={7} />
       <Helix side={-1} seed={131} />
