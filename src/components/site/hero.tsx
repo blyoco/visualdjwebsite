@@ -27,9 +27,9 @@ export function Hero() {
   const inView = useInView(section, { margin: "200px" });
   const { scrollYProgress } = useScroll({ target: section, offset: ["start start", "end end"] });
 
-  const textOpacity = useTransform(scrollYProgress, [0, 0.18], [1, 0]);
-  const textScale = useTransform(scrollYProgress, [0, 0.18], [1, 1.15]);
-  const textBlur = useTransform(scrollYProgress, [0, 0.18], ["blur(0px)", "blur(12px)"]);
+  const textOpacity = useTransform(scrollYProgress, [0.12, 0.35], [1, 0]);
+  const textScale = useTransform(scrollYProgress, [0.12, 0.35], [1, 1.15]);
+  const textBlur = useTransform(scrollYProgress, [0.12, 0.35], ["blur(0px)", "blur(12px)"]);
   const endOpacity = useTransform(scrollYProgress, [0.82, 0.95], [0, 1]);
 
   return (

@@ -4,9 +4,9 @@ import { Reveal } from "./reveal";
 import { LazyVideo } from "./lazy-video";
 
 const points = [
-  "Windows 10 and 11",
+  "Windows 10 and 11 – and Mac at launch",
   "One file – no installer, no account",
-  "Works with any audio input; reads the BPM of a Pioneer DJM-900NXS2 or DJM-A9",
+  "Any audio source – plus MIDI from a Pioneer DJM-900NXS2 or DJM-A9 as an option",
   "Remote control from your phone",
 ];
 
@@ -25,11 +25,11 @@ export function Beta() {
             <div className="relative">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1 font-mono text-xs tracking-[0.2em] uppercase">
                 <span className="size-1.5 animate-pulse rounded-full bg-foreground" />
-                Beta
+                Launch · ADE 2026
               </span>
-              <h2 className="mx-auto mt-6 max-w-2xl text-4xl font-semibold tracking-tight sm:text-6xl">Get in early.</h2>
+              <h2 className="mx-auto mt-6 max-w-2xl text-4xl font-semibold tracking-tight sm:text-6xl">Be there at launch.</h2>
               <p className="mx-auto mt-5 max-w-xl text-lg text-muted">
-                VisualDJ is in beta for Windows PC. It already runs real nights. Join now, help shape what comes next.
+                VisualDJ launches in the week of ADE 2026, for Windows PC and Mac. It already runs real nights – soon it runs yours.
               </p>
 
               <ul className="mx-auto mt-10 grid max-w-2xl gap-3 text-left sm:grid-cols-2">
@@ -41,6 +41,7 @@ export function Beta() {
                 ))}
               </ul>
 
+              <p className="mx-auto mt-4 text-xs text-white/50">Launch date and platforms subject to change.</p>
               {/* Gaat nog nergens heen: de download of wachtlijst komt later. */}
               <button
                 type="button"

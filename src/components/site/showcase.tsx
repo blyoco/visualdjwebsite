@@ -47,7 +47,7 @@ function Row({ r, i }: { r: (typeof rows)[number]; i: number }) {
   const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
   return (
-    <div id={r.id} ref={ref} className="grid scroll-mt-20 items-center gap-10 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
+    <div id={r.id} ref={ref} className="grid scroll-mt-28 items-center gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-14">
       <div className={flip ? "lg:order-2" : undefined} style={{ perspective: 1400 }}>
         <motion.div
           style={{ rotateY, scale, y }}
@@ -58,7 +58,7 @@ function Row({ r, i }: { r: (typeof rows)[number]; i: number }) {
       </div>
       <Reveal>
         <p className="font-mono text-xs tracking-[0.3em] text-muted uppercase">{r.kicker}</p>
-        <h3 className="mt-4 text-4xl font-semibold tracking-tighter sm:text-5xl">{r.title}</h3>
+        <h3 className="mt-4 text-4xl font-semibold tracking-tighter text-balance sm:text-5xl lg:text-[2.6rem] xl:text-5xl">{r.title}</h3>
         <p className="mt-5 text-lg text-muted">{r.body}</p>
         <ul className="mt-6 space-y-2.5">
           {r.points.map((p) => (
@@ -76,7 +76,7 @@ function Row({ r, i }: { r: (typeof rows)[number]; i: number }) {
 export function Showcase() {
   return (
     <section className="border-t border-line py-24 sm:py-32">
-      <div className="mx-auto flex max-w-6xl flex-col gap-28 px-4 sm:px-6 sm:gap-36">
+      <div className="mx-auto flex max-w-7xl flex-col gap-28 px-4 sm:px-6 sm:gap-36">
         {rows.map((r, i) => (
           <Row key={r.id} r={r} i={i} />
         ))}

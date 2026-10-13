@@ -42,7 +42,7 @@ export function Footer() {
           <div className="space-y-1">
             <p>© {new Date().getFullYear()} Rodney Balai. All rights reserved.</p>
             <p>
-              Logo design:{" "}
+              ADE logo design:{" "}
               <a
                 href="https://fosfordesign.nl/"
                 target="_blank"
@@ -50,6 +50,17 @@ export function Footer() {
                 className="text-white/80 underline-offset-4 hover:text-foreground hover:underline"
               >
                 Fosfor Design
+              </a>
+            </p>
+            <p>
+              Music:{" "}
+              <a
+                href="https://www.balai.music"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/80 underline-offset-4 hover:text-foreground hover:underline"
+              >
+                BALAI – O.N.E
               </a>
             </p>
           </div>

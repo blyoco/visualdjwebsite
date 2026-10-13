@@ -21,7 +21,10 @@ Website voor VisualDJ, de automatische VJ-app van de gebruiker. De app zelf staa
 - Renders op basis van Rodney's eigen show: `visuals/voorbeeld/Let Techno Unite 2.vdj` is een zip (show.json, media/, session.json); uitgepakt als `--data`-map werkt hij. De D-achtergrond is `event/achtergrond/IMG_5527.JPG` ("direct": true, fx "Ring Tower"); met `logo=10` komt de rustige start na het logo. Teksten in een render: een `.txt` in `media/event/` (eerste regel `[formaat: horizontaal|verticaal|tekstblok]`, UTF-8 zonder BOM); een tekst komt binnen 15 s na de start. Een onzichtbare PNG in `media/event/` telt als blok (anders blijven Standard en Dans zwart).
 - `texts.mp4` is gemonteerd uit vijf tekstmomenten van 4 s (elk een eigen kleurtoon); `background.mp4` heeft geen kleurdraaiing (de achtergrond heeft zijn eigen rood-blauw); `standard.mp4` is nu een nieuwe render (seconde 20-35).
 
+**Ronde 13 oktober (2):** de lancering is de echte lancering (geen demo), in de ADE-week, voor Windows PC en Mac, onder voorbehoud. De ADE-balk is ADE-geel (#ffe600) met zwarte letters. Credits in de footer: ADE-logo door Fosfor Design, muziek BALAI – O.N.E (de loop). About linkt naar www.balai.music en heeft het LTU-blok van balai.music (gecentreerd op de telefoon). MIDI is een extra optie: het tempo komt rechtstreeks uit elke audiobron; de DJM-900NXS2/A9 kunnen daarnaast hun BPM via MIDI sturen. How it works heeft drie tabbladen met schermafbeeldingen (pp-window.png, pp-blocks.webp, pp-render.webp, de laatste twee van de gebruiker). De carrousel bladert in het open venster (pijlen, pijltjestoetsen, vegen). Het zwerm-logo komt pas als je echt onderaan bent (tijd, geen scroll).
+
 **Nog open:**
+- Een e-maillijst voor een melding bij de lancering (advies gegeven, nog niet gebouwd).
 - Meer tracks van de gebruiker: per track nieuwe clips renderen kan.
 - "Get VisualDJ" leidt nog nergens heen (de knop in het beta-blok doet niets); de prijs is "beta".
 - Let Techno Unite (social proof) komt later; de gebruiker levert het aan.

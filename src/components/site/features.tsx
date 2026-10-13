@@ -12,7 +12,7 @@ const features: { icon: typeof AudioLines; title: string; text: string; video: C
   {
     icon: AudioLines,
     title: "Hears any sound",
-    text: "Your DJ mixer over USB, any audio input on the PC, or a track played on the laptop itself. VisualDJ finds every kick, locks onto the tempo within seconds and cuts the visuals on the beat. Got a Pioneer DJM? It can read the mixer's own BPM over MIDI too.",
+    text: "Straight from any audio source: your DJ mixer over USB, any input on the PC, or a track played on the laptop itself. VisualDJ finds every kick, locks onto the tempo within seconds and cuts the visuals on the beat. Extra option with a Pioneer DJM-900NXS2 or DJM-A9: take the mixer's own BPM over MIDI.",
     video: "dance",
   },
   {

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useInView, useScroll, useTransform } from "motion/react";
-import { Play, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { clip, type ClipName } from "@/lib/site";
 import { LazyVideo } from "./lazy-video";
 import { pauseScroll } from "./smooth-scroll";
@@ -23,11 +23,10 @@ const about: Record<ClipName, { label: string; text: string }> = {
 
 const items: ClipName[] = ["standard", "story", "dance", "follow", "world", "story", "standard", "follow", "world", "dance"];
 
-type Open = { i: number; rect: DOMRect };
+type Open = { i: number; from: DOMRect; back: DOMRect | null; dir: number };
 
-function Lightbox({ open, onClose }: { open: Open; onClose: () => void }) {
+function Lightbox({ open, onClose, onNav }: { open: Open; onClose: () => void; onNav: (dir: number) => void }) {
   const name = items[open.i];
-  const { rect } = open;
   // Het doel: zo groot als past, in het midden, met ruimte voor de tekst eronder.
   const [box] = useState(() => {
     const vw = window.innerWidth;
@@ -36,13 +35,24 @@ function Lightbox({ open, onClose }: { open: Open; onClose: () => void }) {
     const h = (w * 9) / 16;
     return { left: (vw - w) / 2, top: Math.max(72, (vh - h - 110) / 2), width: w, height: h };
   });
-  const from = { left: rect.left, top: rect.top, width: rect.width, height: rect.height, borderRadius: 16 };
+  const rectOf = (r: DOMRect) => ({ left: r.left, top: r.top, width: r.width, height: r.height, borderRadius: 16, opacity: 1 });
+  // Terug naar het scherm in de cilinder als dat vooraan staat; anders zacht weg in het midden.
+  const exit = open.back
+    ? rectOf(open.back)
+    : { ...box, left: box.left + box.width * 0.1, top: box.top + box.height * 0.1, width: box.width * 0.8, height: box.height * 0.8, opacity: 0 };
 
   useEffect(() => {
-    const key = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    const key = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") onNav(1);
+      if (e.key === "ArrowLeft") onNav(-1);
+    };
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
-  }, [onClose]);
+  }, [onClose, onNav]);
+
+  const arrow =
+    "fixed top-1/2 z-10 grid size-12 -translate-y-1/2 place-items-center rounded-full border border-white/25 bg-black/60 backdrop-blur transition-colors hover:bg-white/15 sm:size-14";
 
   return (
     <div className="fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-label={`${about[name].label}, rendered by VisualDJ`}>
@@ -57,25 +67,84 @@ function Lightbox({ open, onClose }: { open: Open; onClose: () => void }) {
         className="absolute inset-0 cursor-zoom-out bg-black/85 backdrop-blur-xl"
       />
       <motion.div
-        initial={from}
-        animate={{ ...box, borderRadius: 28 }}
-        exit={from}
+        initial={rectOf(open.from)}
+        animate={{ ...box, borderRadius: 28, opacity: 1 }}
+        exit={exit}
         transition={{ type: "spring", stiffness: 140, damping: 22, mass: 0.9 }}
         className="fixed overflow-hidden border border-white/20 bg-black shadow-[0_0_160px_-20px_rgba(255,255,255,0.35)]"
       >
-        <video src={clip(name).src} poster={clip(name).poster} autoPlay loop muted playsInline className="size-full object-cover" />
+        {/* Vegen op een telefoon (of slepen met de muis) = het volgende of vorige filmpje */}
+        <motion.div
+          className="size-full touch-pan-y"
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.25}
+          onDragEnd={(_, info) => {
+            if (info.offset.x < -60 || info.velocity.x < -400) onNav(1);
+            else if (info.offset.x > 60 || info.velocity.x > 400) onNav(-1);
+          }}
+        >
+          <AnimatePresence initial={false} custom={open.dir}>
+            <motion.video
+              key={open.i}
+              custom={open.dir}
+              src={clip(name).src}
+              poster={clip(name).poster}
+              autoPlay
+              loop
+              muted
+              playsInline
+              draggable={false}
+              variants={{
+                enter: (d: number) => ({ x: `${d * 100}%`, opacity: 0.4 }),
+                center: { x: "0%", opacity: 1 },
+                leave: (d: number) => ({ x: `${d * -100}%`, opacity: 0.4 }),
+              }}
+              initial="enter"
+              animate="center"
+              exit="leave"
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-0 size-full object-cover"
+            />
+          </AnimatePresence>
+        </motion.div>
       </motion.div>
       <motion.div
+        key={`t${open.i}`}
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0, transition: { delay: 0.25, duration: 0.5 } }}
+        animate={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.45 } }}
         exit={{ opacity: 0, y: 10, transition: { duration: 0.15 } }}
         className="pointer-events-none fixed inset-x-0 px-4 text-center"
         style={{ top: box.top + box.height + 20 }}
       >
-        <p className="font-mono text-xs tracking-[0.35em] text-white/60 uppercase">Rendered by VisualDJ</p>
+        <p className="font-mono text-xs tracking-[0.35em] text-white/60 uppercase">
+          Rendered by VisualDJ · {open.i + 1} / {items.length}
+        </p>
         <h3 className="mt-2 text-3xl font-semibold tracking-tight">{about[name].label}</h3>
         <p className="mx-auto mt-2 max-w-lg text-white/70">{about[name].text}</p>
       </motion.div>
+      <motion.button
+        type="button"
+        onClick={() => onNav(-1)}
+        aria-label="Previous"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { delay: 0.25 } }}
+        exit={{ opacity: 0 }}
+        className={`${arrow} left-3 sm:left-6`}
+      >
+        <ChevronLeft className="size-6" />
+      </motion.button>
+      <motion.button
+        type="button"
+        onClick={() => onNav(1)}
+        aria-label="Next"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { delay: 0.25 } }}
+        exit={{ opacity: 0 }}
+        className={`${arrow} right-3 sm:right-6`}
+      >
+        <ChevronRight className="size-6" />
+      </motion.button>
       <motion.button
         type="button"
         onClick={onClose}
@@ -90,7 +159,6 @@ function Lightbox({ open, onClose }: { open: Open; onClose: () => void }) {
     </div>
   );
 }
-
 export function Gallery() {
   const section = useRef<HTMLElement>(null);
   const inView = useInView(section, { margin: "300px" });
@@ -100,6 +168,22 @@ export function Gallery() {
   const [open, setOpen] = useState<Open | null>(null);
   // Het scherm in de cilinder blijft weg tot het filmpje helemaal terug is gekrompen.
   const [hidden, setHidden] = useState<number | null>(null);
+  // Het venster blijft bestaan tot de sluit-animatie klaar is.
+  const [present, setPresent] = useState(false);
+  const cards = useRef<(HTMLButtonElement | null)[]>([]);
+
+  // Naar links of rechts in het open venster. Staat het nieuwe scherm vooraan in de cilinder, dan valt het venster
+  // daar straks naar terug; anders verdwijnt het zacht in het midden.
+  const nav = (dir: number) => {
+    setOpen((o) => {
+      if (!o) return o;
+      const i = (o.i + dir + items.length) % items.length;
+      const r = cards.current[i]?.getBoundingClientRect();
+      const front = !!r && r.width > w * 0.7 && Math.abs(r.left + r.width / 2 - window.innerWidth / 2) < window.innerWidth * 0.25;
+      setHidden(front ? i : null);
+      return { ...o, i, dir, back: front && r ? r : null };
+    });
+  };
 
   // De kaartbreedte en de straal van de cilinder volgen de schermbreedte.
   const [w, setW] = useState(360);
@@ -139,10 +223,15 @@ export function Gallery() {
                 style={{ transform: `rotateY(${i * step}deg) translateZ(${radius}px)`, backfaceVisibility: "hidden" }}
               >
                 <button
+                  ref={(el) => {
+                    cards.current[i] = el;
+                  }}
                   type="button"
                   aria-label={`Watch ${about[name].label}`}
                   onClick={(e) => {
-                    setOpen({ i, rect: e.currentTarget.getBoundingClientRect() });
+                    const r = e.currentTarget.getBoundingClientRect();
+                    setOpen({ i, from: r, back: r, dir: 0 });
+                    setPresent(true);
                     setHidden(i);
                   }}
                   className="group relative block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-white/15 bg-black shadow-[0_0_60px_-10px_rgba(255,255,255,0.15)] transition-[border-color,box-shadow] duration-300 hover:border-white/50 hover:shadow-[0_0_80px_-5px_rgba(255,255,255,0.35)]"
@@ -166,10 +255,15 @@ export function Gallery() {
         </div>
       </div>
 
-      {hidden !== null &&
+      {present &&
         createPortal(
-          <AnimatePresence onExitComplete={() => setHidden(null)}>
-            {open && <Lightbox key={open.i} open={open} onClose={() => setOpen(null)} />}
+          <AnimatePresence
+            onExitComplete={() => {
+              setHidden(null);
+              setPresent(false);
+            }}
+          >
+            {open && <Lightbox key="lightbox" open={open} onClose={() => setOpen(null)} onNav={nav} />}
           </AnimatePresence>,
           document.body,
         )}

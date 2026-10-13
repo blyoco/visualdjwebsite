@@ -4,7 +4,7 @@ import { Reveal } from "./reveal";
 const faq = [
   {
     q: "What is VisualDJ?",
-    a: "An automatic VJ for Windows. It listens to the music, finds the beat and plays visuals all night, mixing in the photos, videos and texts of the DJ who is on and of the event itself. Five kinds of picture: Standard (animations that switch on the beat), Story (one long journey with a living camera), Follow (that journey with a line of fire and a calm camera), Dance (the swarm dancing in moves that land on the bar) and World (full worlds that break open on the beat).",
+    a: "An automatic VJ for Windows PC – and Mac at launch. It listens to the music, finds the beat and plays visuals all night, mixing in the photos, videos and texts of the DJ who is on and of the event itself. Five kinds of picture: Standard (animations that switch on the beat), Story (one long journey with a living camera), Follow (that journey with a line of fire and a calm camera), Dance (the swarm dancing in moves that land on the bar) and World (full worlds that break open on the beat).",
   },
   {
     q: "What do I need?",
@@ -24,7 +24,7 @@ const faq = [
   },
   {
     q: "How does it find the tempo?",
-    a: "From the kicks: within about a second and a half the BPM is there, to a tenth of a beat, and it follows a DJ who rides the pitch. A Pioneer DJM-900NXS2 or DJM-A9 can also send its own BPM over the same USB cable. Above 155 BPM the visuals switch to half time by themselves.",
+    a: "Straight from the sound, whatever the source: within about a second and a half after the first kicks the BPM is there, to a tenth of a beat, and it follows a DJ who rides the pitch. As an extra option, a Pioneer DJM-900NXS2 or DJM-A9 can send its own BPM over MIDI on the same USB cable. Above 155 BPM the visuals switch to half time by themselves.",
   },
   {
     q: "What kind of media can I add?",
@@ -44,7 +44,7 @@ const faq = [
   },
   {
     q: "How do I get it?",
-    a: "VisualDJ is in beta. Sign-up opens soon, right here on this page.",
+    a: "VisualDJ launches in the week of ADE 2026 (Amsterdam Dance Event, October), for Windows PC and Mac – subject to change. Keep an eye on this site.",
   },
 ];
 

@@ -1,11 +1,33 @@
+import { ArrowUpRight } from "lucide-react";
 import { socials } from "@/lib/site";
 import { Reveal } from "./reveal";
 import { SocialIcon } from "./social-icon";
 
-const bio = [
-  "I have been making music for forty years. I started in hardcore – loud, fast, and built out of whatever gear I could get my hands on. These days I make techno.",
-  "VisualDJ started inside BALAI, the music workstation I build. Its visuals were made to move with the music, and I wanted that on the big screen at a club night – without someone stuck behind a laptop all night.",
-  "So I took the visuals out and built a VJ that runs by itself. It listens to the mixer, knows which DJ is on and keeps the room alive from doors open to lights on.",
+const balaiLink = (
+  <a href="https://www.balai.music" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 hover:no-underline">
+    BALAI
+  </a>
+);
+
+const bio: React.ReactNode[] = [
+  "I have been making music for forty years. I started in hardcore – loud, fast, and built out of whatever gear I could get my hands on. These days I make techno, and I release it through Let Techno Unite Records, the label I work with.",
+  <>
+    VisualDJ started inside {balaiLink}, the music workstation I build – have a look at{" "}
+    <a href="https://www.balai.music" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 hover:no-underline">
+      www.balai.music
+    </a>
+    . Its visuals were made to move with the music, and I wanted that on the big screen at a club night – without someone stuck behind a laptop all night.
+  </>,
+  "So I took the visuals out and built a VJ that runs by itself. It listens to the music, knows which DJ is on and keeps the room alive from doors open to lights on.",
+];
+
+// Het label, zoals op balai.music
+const ltuLinks = [
+  { href: "https://ltu-records.com/", label: "ltu-records.com" },
+  { href: "https://www.beatport.com/label/let-techno-unite-records/115916", label: "Let Techno Unite on Beatport" },
+  { href: "https://www.beatport.com/label/lturecords/126571", label: "LTU-Records on Beatport" },
+  { href: "https://open.spotify.com/playlist/17wLwXnSimxoo4rut7Q1R8", label: "Label playlist on Spotify" },
+  { href: "https://www.labelradar.com/labels/LetTechnoUniteRecords/portal", label: "Submit a demo" },
 ];
 
 export function About() {
@@ -13,7 +35,7 @@ export function About() {
     <section id="about" className="scroll-mt-16 border-t border-line py-24 sm:py-32">
       <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
         <Reveal className="lg:sticky lg:top-24 lg:self-start">
-          <figure className="max-w-sm">
+          <figure className="mx-auto max-w-sm lg:mx-0">
             <div className="overflow-hidden rounded-3xl border border-line bg-white/[0.02] p-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -25,12 +47,12 @@ export function About() {
                 className="aspect-square w-full rounded-2xl object-cover grayscale"
               />
             </div>
-            <figcaption className="mt-5">
+            <figcaption className="mt-5 text-center lg:text-left">
               <p className="text-2xl font-semibold tracking-tight">Rodney Balai</p>
-              <p className="mt-1 text-sm text-muted">Producer · maker of VisualDJ and BALAI</p>
+              <p className="mt-1 text-sm text-muted">Producer · Let Techno Unite Records · maker of VisualDJ and BALAI</p>
             </figcaption>
           </figure>
-          <ul className="mt-6 flex max-w-sm flex-wrap gap-2">
+          <ul className="mx-auto mt-6 flex max-w-sm flex-wrap justify-center gap-2 lg:mx-0 lg:justify-start">
             {socials.map((s) => (
               <li key={s.label}>
                 <a
@@ -58,6 +80,36 @@ export function About() {
                 {p}
               </p>
             ))}
+          </div>
+
+          <div className="mt-10 rounded-3xl border border-line bg-white/[0.02] p-6 md:p-8">
+            <div className="grid gap-6 text-center sm:grid-cols-[11rem_1fr] sm:items-center sm:gap-8 sm:text-left">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/img/ltu-logo.webp" alt="Let Techno Unite logo" width={520} height={409} loading="lazy" className="mx-auto w-40 sm:mx-0 sm:w-44" />
+              <div>
+                <p className="font-mono text-xs tracking-[0.25em] text-muted uppercase">The label</p>
+                <h3 className="mt-1 text-2xl font-semibold tracking-tight">Let Techno Unite Records</h3>
+                <p className="mt-3 text-pretty text-muted">
+                  I release my techno through Let Techno Unite Records, the label I work with. Find the releases on
+                  Beatport, put the label playlist on, or send in a demo of your own.
+                </p>
+              </div>
+            </div>
+            <ul className="mt-6 grid gap-2 sm:grid-cols-2">
+              {ltuLinks.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3 text-sm transition-colors hover:border-white/30 hover:bg-white/5"
+                  >
+                    {l.label}
+                    <ArrowUpRight className="size-4 shrink-0 text-muted" />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </Reveal>
       </div>

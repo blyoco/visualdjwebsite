@@ -37,24 +37,30 @@ export function Launch() {
           </p>
           <h2 className="mt-4 text-5xl font-semibold tracking-tighter sm:text-7xl">Launching at ADE.</h2>
           <p className="mx-auto mt-5 max-w-xl text-lg text-white/75 lg:mx-0">
-            VisualDJ goes public in the week of Amsterdam Dance Event, October 2026. Keep an eye on this site – the beta
-            opens here first.
+            Not a demo – the real thing. VisualDJ launches in the week of Amsterdam Dance Event, October 2026, for Windows
+            PC and Mac. Keep an eye on this site.
           </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-2 lg:justify-start">
+            <span className="rounded-full border border-white/25 px-4 py-1.5 text-sm">Windows PC</span>
+            <span className="rounded-full border border-white/25 px-4 py-1.5 text-sm">Mac</span>
+          </div>
+          <p className="mt-3 text-xs text-white/50">Launch date and platforms subject to change.</p>
         </Reveal>
       </div>
     </section>
   );
 }
 
-// De smalle balk boven de menubalk
+// De smalle balk boven de menubalk, in ADE-geel met zwarte letters
 export function LaunchBar() {
   return (
     <a
       href="#launch"
-      className="flex h-8 items-center justify-center gap-2 bg-white px-4 text-center text-xs font-medium text-black transition-colors hover:bg-white/90 sm:text-sm"
+      className="flex h-8 items-center justify-center gap-2 bg-[#ffe600] px-4 text-center text-xs font-semibold text-black transition-colors hover:bg-[#fff04d] sm:text-sm"
     >
       <span className="size-1.5 animate-pulse rounded-full bg-black" />
-      Launching during ADE 2026 – keep an eye on this site
+      <span className="sm:hidden">Launch during ADE 2026 – PC &amp; Mac</span>
+      <span className="hidden sm:inline">The launch: during ADE 2026, for PC and Mac – keep an eye on this site</span>
     </a>
   );
 }
