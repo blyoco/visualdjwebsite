@@ -33,7 +33,7 @@ export function Hero() {
   const endOpacity = useTransform(scrollYProgress, [0.82, 0.95], [0, 1]);
 
   return (
-    <section id="top" ref={section} className={fly ? "relative h-[420vh]" : "relative"}>
+    <section id="top" ref={section} className={fly ? "relative h-[240vh]" : "relative"}>
       <div className={fly ? "sticky top-0 h-dvh overflow-hidden" : "relative overflow-hidden"}>
         {fly ? (
           <div className="absolute inset-0">{inView && <TunnelScene progress={scrollYProgress} />}</div>

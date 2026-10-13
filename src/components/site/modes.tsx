@@ -5,7 +5,7 @@ import { motion, useMotionValueEvent, useScroll, useTransform, type MotionValue 
 import { clip, type ClipName } from "@/lib/site";
 import { LazyVideo } from "./lazy-video";
 
-// De drie soorten beeld van de app. Het scherm blijft staan; scrollen veegt het volgende beeld er in een cirkel overheen.
+// De vijf soorten beeld van de app. Het scherm blijft staan; scrollen veegt het volgende beeld er in een cirkel overheen.
 
 const modes: { name: ClipName; title: string; text: string }[] = [
   {
@@ -23,12 +23,22 @@ const modes: { name: ClipName; title: string; text: string }[] = [
     title: "Follow",
     text: "The same journey with a line of fire curling from the centre and a calm camera. The world bends around it and lights up on the kick.",
   },
+  {
+    name: "dance",
+    title: "Dance",
+    text: "The swarm dances all the time: twenty moves in stories that land on the bar. Something calm in a break, a peak on the drop.",
+  },
+  {
+    name: "world",
+    title: "World",
+    text: "Full worlds of shapes that switch and break open on the beat, with a swarm dancing through them in flashes.",
+  },
 ];
 
 function Layer({ name, i, progress }: { name: ClipName; i: number; progress: MotionValue<number> }) {
   // Laag 0 staat er altijd; laag 1 en 2 vegen in een cirkel naar binnen.
   const from = (i - 0.5) / modes.length + 0.05;
-  const to = from + 0.22;
+  const to = from + 0.14;
   const r = useTransform(progress, [from, to], ["0%", "150%"]);
   const clipPath = useTransform(r, (v) => `circle(${v} at 50% 50%)`);
   const scale = useTransform(progress, [from, to + 0.2], [1.25, 1]);
@@ -51,7 +61,7 @@ export function Modes() {
   useMotionValueEvent(scrollYProgress, "change", (v) => setActive(Math.min(modes.length - 1, Math.floor(v * modes.length * 0.999 + 0.1))));
 
   return (
-    <section id="modes" ref={section} className="relative h-[320vh] scroll-mt-0">
+    <section id="modes" ref={section} className="relative h-[560vh] scroll-mt-0">
       <div className="sticky top-0 h-dvh overflow-hidden">
         {modes.map((m, i) => (
           <Layer key={m.name} name={m.name} i={i} progress={scrollYProgress} />
@@ -60,7 +70,7 @@ export function Modes() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />
 
         <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-end px-4 pb-16 sm:px-6 md:justify-center md:pb-0">
-          <p className="font-mono text-xs tracking-[0.4em] text-white/70 uppercase">Three kinds of picture</p>
+          <p className="font-mono text-xs tracking-[0.4em] text-white/70 uppercase">Five kinds of picture</p>
           <div className="relative mt-4 h-[17rem] max-w-lg sm:h-[15rem]">
             {modes.map((m, i) => (
               <motion.div
@@ -78,7 +88,7 @@ export function Modes() {
           </div>
           <div className="mt-8 flex gap-2">
             {modes.map((m, i) => (
-              <div key={m.name} className="h-1 w-16 overflow-hidden rounded-full bg-white/20">
+              <div key={m.name} className="h-1 w-10 overflow-hidden sm:w-14 rounded-full bg-white/20">
                 <motion.div
                   className="h-full bg-white"
                   initial={false}

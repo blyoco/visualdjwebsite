@@ -4,7 +4,7 @@ import { Reveal } from "./reveal";
 const faq = [
   {
     q: "What is VisualDJ?",
-    a: "An automatic VJ for Windows. It listens to the music, finds the beat and plays visuals all night, mixing in the photos, videos and texts of the DJ who is on and of the event itself. Three kinds of picture: Standard (animations that switch on the beat), Story (one long journey with a living camera) and Follow (that journey with a line of fire and a calm camera).",
+    a: "An automatic VJ for Windows. It listens to the music, finds the beat and plays visuals all night, mixing in the photos, videos and texts of the DJ who is on and of the event itself. Five kinds of picture: Standard (animations that switch on the beat), Story (one long journey with a living camera), Follow (that journey with a line of fire and a calm camera), Dance (the swarm dancing in moves that land on the bar) and World (full worlds that break open on the beat).",
   },
   {
     q: "What do I need?",
