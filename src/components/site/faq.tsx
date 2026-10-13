@@ -8,7 +8,7 @@ const faq = [
   },
   {
     q: "What do I need?",
-    a: "A Windows 10 or 11 PC or laptop, a sound source and a second screen or projector over HDMI. The sound can be a DJ mixer over USB, any other audio input, or a track you play on the laptop itself. No installer and no account: VisualDJ is a single file you start directly.",
+    a: "A Windows 10 or 11 PC or laptop, or a Mac (at launch, subject to change), a sound source and a second screen or projector over HDMI. The sound can be a DJ mixer over USB, any other audio input, or a track you play on the laptop itself. No installer and no account: VisualDJ is a single file you start directly.",
   },
   {
     q: "Can I make videos with it?",
