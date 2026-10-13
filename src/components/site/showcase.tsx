@@ -58,7 +58,7 @@ function Row({ r, i }: { r: (typeof rows)[number]; i: number }) {
       </div>
       <Reveal>
         <p className="font-mono text-xs tracking-[0.3em] text-muted uppercase">{r.kicker}</p>
-        <h3 className="mt-4 text-4xl font-semibold tracking-tighter text-balance sm:text-5xl lg:text-[2.6rem] xl:text-5xl">{r.title}</h3>
+        <h3 className="mt-4 text-4xl font-semibold tracking-tighter sm:text-5xl lg:text-[2.05rem] lg:whitespace-nowrap xl:text-[2.4rem]">{r.title}</h3>
         <p className="mt-5 text-lg text-muted">{r.body}</p>
         <ul className="mt-6 space-y-2.5">
           {r.points.map((p) => (

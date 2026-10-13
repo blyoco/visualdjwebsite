@@ -77,7 +77,8 @@ function Swarm({ progress, pts }: { progress: MotionValue<number>; pts: Pts }) {
     for (let i = 0; i < COUNT; i++) {
       // Elk puntje heeft zijn eigen moment om aan te komen, zodat het logo zich vlok voor vlok vult.
       const s = seeds[i];
-      const local = Math.min(1, Math.max(0, (pr - s * 0.35) / 0.55));
+      // (s * 0.3 + 0.4 = 0,7: het logo is compleet op 70% van het laatste scherm, dus al voor je onderaan bent)
+      const local = Math.min(1, Math.max(0, (pr - s * 0.3) / 0.4));
       const e = 1 - Math.pow(1 - local, 3);
       const j = i * 3;
       const wob = (1 - e) * 0.6 + beat * 0.08;

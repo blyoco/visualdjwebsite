@@ -28,6 +28,7 @@ const ltuLinks = [
   { href: "https://www.beatport.com/label/lturecords/126571", label: "LTU-Records on Beatport" },
   { href: "https://open.spotify.com/playlist/17wLwXnSimxoo4rut7Q1R8", label: "Label playlist on Spotify" },
   { href: "https://www.labelradar.com/labels/LetTechnoUniteRecords/portal", label: "Submit a demo" },
+  { href: "https://www.instagram.com/djperroz/", label: "DJ Perroz, founder – Instagram" },
 ];
 
 export function About() {
@@ -87,11 +88,19 @@ export function About() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/img/ltu-logo.webp" alt="Let Techno Unite logo" width={520} height={409} loading="lazy" className="mx-auto w-40 sm:mx-0 sm:w-44" />
               <div>
-                <p className="font-mono text-xs tracking-[0.25em] text-muted uppercase">The label</p>
+                <p className="font-mono text-xs tracking-[0.25em] text-muted uppercase">The label I work for</p>
                 <h3 className="mt-1 text-2xl font-semibold tracking-tight">Let Techno Unite Records</h3>
                 <p className="mt-3 text-pretty text-muted">
-                  I release my techno through Let Techno Unite Records, the label I work with. Find the releases on
-                  Beatport, put the label playlist on, or send in a demo of your own.
+                  Not my label – the label I release my techno through and work for. Let Techno Unite was founded by{" "}
+                  <a
+                    href="https://www.instagram.com/djperroz/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground underline underline-offset-4 hover:no-underline"
+                  >
+                    DJ Perroz
+                  </a>
+                  . Find the releases on Beatport, put the label playlist on, or send in a demo of your own.
                 </p>
               </div>
             </div>
