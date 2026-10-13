@@ -8,7 +8,15 @@ const faq = [
   },
   {
     q: "What do I need?",
-    a: "A Windows 10 or 11 PC or laptop, an audio input (a DJ mixer over USB works best) and a second screen or projector over HDMI. No installer and no account: VisualDJ is a single file you start directly.",
+    a: "A Windows 10 or 11 PC or laptop, a sound source and a second screen or projector over HDMI. The sound can be a DJ mixer over USB, any other audio input, or a track you play on the laptop itself. No installer and no account: VisualDJ is a single file you start directly.",
+  },
+  {
+    q: "Can I make videos with it?",
+    a: "Yes. RENDER VIDEO turns a track into a video with the show's picture: Reel, Story, Post, YouTube, Shorts or a small 16:9 picture, at 30 or 60 frames a second, with its own media, background and logo. Every clip on this site was made that way.",
+  },
+  {
+    q: "Which languages does it speak?",
+    a: "English and Dutch are built in. Choose Other language (online) and the app translates itself once into the language you pick – the window, the manual and the remote on your phone.",
   },
   {
     q: "Does it mess with my mixer or my livestream?",

@@ -1,10 +1,11 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getHref, nav as links } from "@/lib/site";
+import { LaunchBar } from "./launch";
 import { SoundToggle } from "./sound";
 
 export function Navbar() {
@@ -23,6 +24,7 @@ export function Navbar() {
         scrolled || open ? "border-b border-line bg-black/70 backdrop-blur-xl" : "bg-transparent",
       )}
     >
+      <LaunchBar />
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <a href="#top" aria-label="VisualDJ home" className="flex items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}

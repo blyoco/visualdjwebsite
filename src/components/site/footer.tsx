@@ -39,7 +39,20 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-line pt-8 text-xs text-muted sm:flex-row sm:justify-between">
-          <p>© {new Date().getFullYear()} Rodney Balai. All rights reserved.</p>
+          <div className="space-y-1">
+            <p>© {new Date().getFullYear()} Rodney Balai. All rights reserved.</p>
+            <p>
+              Logo design:{" "}
+              <a
+                href="https://fosfordesign.nl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/80 underline-offset-4 hover:text-foreground hover:underline"
+              >
+                Fosfor Design
+              </a>
+            </p>
+          </div>
           <p className="max-w-xl sm:text-right">
             Windows is a trademark of the Microsoft group of companies. Pioneer DJ and DJM are trademarks of AlphaTheta
             Corporation.

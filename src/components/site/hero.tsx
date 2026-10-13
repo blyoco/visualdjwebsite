@@ -78,7 +78,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.25, ease }}
             className="mx-auto mt-7 max-w-xl text-lg text-white/75"
           >
-            VisualDJ listens to your mixer, locks onto the kick and plays a full night of visuals. You set up the night.
+            VisualDJ listens to any sound – your mixer, any audio input or a track on the laptop – locks onto the kick and plays a full night of visuals. You set up the night.
             It runs the show.
           </motion.p>
           <motion.div

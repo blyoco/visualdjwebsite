@@ -17,6 +17,8 @@ const about: Record<ClipName, { label: string; text: string }> = {
   follow: { label: "Follow", text: "The journey with a line of fire curling from the centre and a calm camera." },
   dance: { label: "Dance", text: "The swarm dances all the time, in moves that land on the bar: calm in a break, a peak on the drop." },
   world: { label: "World", text: "Full worlds of shapes that switch and break open on the beat." },
+  texts: { label: "Texts", text: "Words that move through the picture on the beat, in 115 movements." },
+  background: { label: "Background", text: "Your own artwork behind the picture, turning and breathing with the music." },
 };
 
 const items: ClipName[] = ["standard", "story", "dance", "follow", "world", "story", "standard", "follow", "world", "dance"];

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
-const HEADER = 64;
+const HEADER = 96; // de ADE-balk (32) en de menubalk (64)
 
 let current: Lenis | null = null;
 /** De pagina even stilzetten (bijvoorbeeld zolang een filmpje open is) en weer laten scrollen. */

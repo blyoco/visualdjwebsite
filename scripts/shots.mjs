@@ -33,11 +33,16 @@ const stops = [
   { name: "06c-modes-dance", at: "#modes", f: 0.7 },
   { name: "07-modes-world", at: "#modes", f: 0.97 },
   { name: "08-features", at: "#features", f: 0.35 },
+  { name: "08b-texts", at: "#texts", f: 0 },
+  { name: "08c-backgrounds", at: "#backgrounds", f: 0 },
+  { name: "08d-render", at: "#render", f: 0 },
   { name: "09-how", at: "#how", f: 0.55 },
   { name: "10-gallery", at: "section[data-gallery]", f: 0.4 },
   { name: "11-about", at: "#about", f: 0.1 },
   { name: "12-beta", at: "#beta", f: 0.1 },
-  { name: "13-swarm", at: "section[aria-label=VisualDJ]", f: 0.98 },
+  { name: "12b-faq", at: "#faq", f: 0 },
+  { name: "13-swarm-bijna", at: "section[aria-label=VisualDJ]", f: -0.5 },
+  { name: "14-swarm-onderaan", at: "body", f: 1 },
 ];
 
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), "visualdj-shots-"));

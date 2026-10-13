@@ -11,8 +11,8 @@ import { LazyVideo } from "./lazy-video";
 const features: { icon: typeof AudioLines; title: string; text: string; video: ClipName }[] = [
   {
     icon: AudioLines,
-    title: "Hears the beat",
-    text: "Plug in your mixer over USB. VisualDJ finds every kick, locks onto the tempo within seconds and cuts the visuals on the beat. Got a Pioneer DJM? It can read the mixer's own BPM too.",
+    title: "Hears any sound",
+    text: "Your DJ mixer over USB, any audio input on the PC, or a track played on the laptop itself. VisualDJ finds every kick, locks onto the tempo within seconds and cuts the visuals on the beat. Got a Pioneer DJM? It can read the mixer's own BPM over MIDI too.",
     video: "dance",
   },
   {

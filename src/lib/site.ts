@@ -11,6 +11,7 @@ export const socials: { label: string; detail: string; href: string; icon: Socia
 export const nav = [
   { href: "#modes", label: "Modes" },
   { href: "#features", label: "Features" },
+  { href: "#render", label: "Render" },
   { href: "#how", label: "How it works" },
   { href: "#about", label: "About" },
   { href: "#faq", label: "FAQ" },
@@ -21,7 +22,8 @@ export const getHref = "#beta";
 
 // De clips: gerenderd met VisualDJ zelf (RENDER VIDEO) op de loop hieronder.
 // Per clip een 720p-versie (src), een kleine voor de 3D-tunnel en carrousel (small) en een stilstaand beeld (poster).
-export type ClipName = "standard" | "story" | "follow" | "dance" | "world";
+// texts: teksten met hun animaties; background: de LTU-achtergrond met D en Ring Tower uit Rodney's eigen show.
+export type ClipName = "standard" | "story" | "follow" | "dance" | "world" | "texts" | "background";
 export const clip = (name: ClipName) => ({
   src: `/video/${name}.mp4`,
   small: `/video/${name}-sm.mp4`,
