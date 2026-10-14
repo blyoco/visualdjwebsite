@@ -1,4 +1,4 @@
-﻿# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
@@ -41,10 +41,9 @@ yarn-error.log*
 next-env.d.ts
 
 
-# bronbestanden audio (alleen de webversie in public/ gaat online)
+# losse kopieen van de loop in de hoofdmap; de bron staat in assets/audio/
 /looptechno*.wav
 /looptechno*.mp3
-/assets/audio/
 
 # schermafbeeldingen van scripts/shots.mjs
 /shots/
